@@ -67,4 +67,13 @@ class UserController extends Controller
             'stasut' => 'failed',
         ], 400);
     }
+
+    public function logout()
+    {
+        auth()->user()->tokens()->delete();
+        return response([
+            'message' => 'logout success',
+            'stasut' => 'logout',
+        ], 200);
+    }
 }

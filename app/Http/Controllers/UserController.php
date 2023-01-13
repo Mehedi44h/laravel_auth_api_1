@@ -70,10 +70,21 @@ class UserController extends Controller
 
     public function logout()
     {
-        auth()->user()->tokens()->delete();
+        // auth()->user()->tokens()->delete();
         return response([
             'message' => 'logout success',
             'stasut' => 'logout',
         ], 200);
     }
+    public function loged_user()
+    {
+            $loged_user=auth()->user();
+        return response([
+            'message' => 'loged user data success',
+            'stasut' => 'success',
+        ], 200);
+    }
+
+
+    
 }

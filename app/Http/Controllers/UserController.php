@@ -78,13 +78,24 @@ class UserController extends Controller
     }
     public function loged_user()
     {
-            $loged_user=auth()->user();
+        $loged_user = auth()->user();
         return response([
             'message' => 'loged user data success',
             'stasut' => 'success',
         ], 200);
     }
 
-
-    
+    public function chenge_password(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|confirmed',
+        ]);
+        $loged_user = auth()->user();
+        $loged_user->password = Hash::make($request->password);
+        $loged_user->save();
+        return response([
+            'message' => 'password chenge success',
+            'stasut' => 'success',
+        ], 200);
+    }
 }

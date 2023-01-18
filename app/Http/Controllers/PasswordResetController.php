@@ -70,7 +70,7 @@ class PasswordResetController extends Controller
         $user=User::where('email',$passwordreset->email)->first();
         $user->password=Hash::make($request->password);
         $user->save();
-        // PasswordReset::where('email',$user->email)->delete();
+        PasswordReset::where('email',$user->email)->delete();
         return response([
             'message' => 'password reset seccessfully',
             'stasut' => 'success',
